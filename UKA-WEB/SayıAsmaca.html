@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sayı Asmaca</title>
+  <style>
+    body {
+      background: #222;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      font-family: Arial, sans-serif;
+    }
+    #canvas {
+      background: #fff;
+      border: 2px solid #000;
+      margin-top: 20px;
+    }
+    #textbox {
+      width: 200px;
+      height: 30px;
+      font-size: 18px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #555;
+      padding-left: 10px;
+    }
+    #buton {
+      height: 34px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      background: rgb(90, 239, 162);
+      border: none;
+    }
+    #sonuc {
+      margin-top: 15px;
+      font-size: 22px;
+      min-height: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <input type="text" id="textbox" placeholder="0-9 arası tahmin">
+  <button id="buton" onclick="aramaYap()">Tahmin Et</button>
+</div>
+
+<canvas id="canvas" width="300" height="400"></canvas>
+
+<div id="sonuc"></div>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  // Askı tahtasını çiz (her zaman sabit)
+  function drawHangmanStand() {
+    ctx.lineWidth = 4;
+    ctx.strokeStyle = '#000';
+
+    // Taban
+    ctx.beginPath();
+    ctx.moveTo(50, 350);
+    ctx.lineTo(250, 350);
+    ctx.stroke();
+
+    // Dikey direk
+    ctx.beginPath();
+    ctx.moveTo(100, 350);
+    ctx.lineTo(100, 50);
+    ctx.stroke();
+
+    // Üst yatay çubuk
+    ctx.beginPath();
+    ctx.moveTo(100, 50);
+    ctx.lineTo(200, 50);
+    ctx.stroke();
+
+    // İp
+    ctx.beginPath();
+    ctx.moveTo(200, 50);
+    ctx.lineTo(200, 100);
+    ctx.stroke();
+  }
+
+  // Adamın parçalarını çiz, wrongGuess değerine göre
+  function drawHangman(wrongGuess) {
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#000';
+
+    switch (wrongGuess) {
+      case 1: // Kafa
+        ctx.beginPath();
+        ctx.arc(200, 130, 30, 0, Math.PI * 2, true);
+        ctx.stroke();
+        break;
+      case 2: // Gövde
+        ctx.beginPath();
+        ctx.moveTo(200, 160);
+        ctx.lineTo(200, 250);
+        ctx.stroke();
+        break;
+      case 3: // Sol Kol
+        ctx.beginPath();
+        ctx.moveTo(200, 180);
+        ctx.lineTo(160, 220);
+        ctx.stroke();
+        break;
+      case 4: // Sağ Kol
+        ctx.beginPath();
+        ctx.moveTo(200, 180);
+        ctx.lineTo(240, 220);
+        ctx.stroke();
+        break;
+      case 5: // Sol Bacak
+        ctx.beginPath();
+        ctx.moveTo(200, 250);
+        ctx.lineTo(160, 300);
+        ctx.stroke();
+        break;
+      case 6: // Sağ Bacak
+        ctx.beginPath();
+        ctx.moveTo(200, 250);
+        ctx.lineTo(240, 300);
+        ctx.stroke();
+        break;
+    }
+  }
+
+  // Canvas'ı komple temizle ve tahtayı tekrar çiz
+  function resetCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawHangmanStand();
+  }
+
+  let number = Math.floor(Math.random() * 10);
+  console.log("Rastgele Sayı:", number);
+  let wrongGuess = 0;
+
+  resetCanvas();
+
+  function aramaYap() {
+    const input = document.getElementById('textbox').value;
+    const guess = Number(input);
+    const sonucDiv = document.getElementById('sonuc');
+
+    if (isNaN(guess) || guess < 0 || guess > 9) {
+      sonucDiv.innerText = "Lütfen 0 ile 9 arasında geçerli bir sayı giriniz.";
+      return;
+    }
+
+   if (guess === number) {
+  sonucDiv.innerText = "Tebrikler! Doğru tahmin 🎉";
+  return;
+} else if (guess < number) {
+  wrongGuess++;
+  drawHangman(wrongGuess);
+  if (wrongGuess >= 6) {
+    sonucDiv.innerText = "Oyunu kaybettiniz! Doğru sayı: " + number;
+  } else {
+    sonucDiv.innerText = "Tahmin çok küçük! Kalan hak: " + (6 - wrongGuess);
+  }
+} else if (guess > number) {
+  wrongGuess++;
+  drawHangman(wrongGuess);
+  if (wrongGuess >= 6) {
+    sonucDiv.innerText = "Oyunu kaybettiniz! Doğru sayı: " + number;
+  } else {
+    sonucDiv.innerText = "Tahmin çok büyük! Kalan hak: " + (6 - wrongGuess);
+  }
+}
+document.getElementById('textbox').value = '';
+
+  }
+</script>
+
+</body>
+</html>

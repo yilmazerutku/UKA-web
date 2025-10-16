@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>ForgeUKA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .kutucuk {
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+      background-color: #f9f9f9;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: lightgreen;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    input[type="file"], input[type="text"], input[type="password"] {
+      margin-top: 10px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 200px;
+    }
+
+    #sayfa1, #sayfa2, #sayfa3, #sayfa4, #sayfa5 {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #sayfa1 {
+      display: block;
+    }
+
+    #Buton1, #Buton2, #Buton3, #Buton5, #Buton6 , #Buton7{
+      background-color: lightgreen;
+      color: black;
+      position: absolute;
+      top: 5%;
+    }
+    #Buton1 { left: 2%;top:15%; }
+    #Buton2 { left: 93%;top:24%; background-color: lightblue; }
+    #Buton3 { left: 93%; top: 12%; background-color: lightcoral; }
+    #Buton6 { left: 2%; top: 10%; background-color: yellow; }
+    #Buton5 { left: 2%; top: 18%; background-color: lightblue; }
+    #Buton7 { left: 93%; top: 18%; background-color: rgb(255, 152, 214); }
+
+    #button4 {
+      background-color: yellow;
+      color: black;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: none;
+    }
+
+    #metinKutusuAD, #metinKutusuŞİFRE, #gonderButonu {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    #metinKutusuAD { top: 200px; }
+    #metinKutusuŞİFRE { top: 250px; }
+    #gonderButonu { top: 300px; }
+
+    #UKAlogo {
+      position: absolute;
+      top: 5%;
+      left: 84%;
+      width: 150px;
+    }
+
+    #JavaMods {
+      display: none;
+      position: absolute;
+      width: 250px;
+    }
+
+    #aramaKutu {
+      position: absolute;
+      top: 3%;
+      left: 1%;
+      display: flex;
+      align-items: center;
+      width: 98%;
+    }
+
+    #textboxARAMA {
+      flex: 1;
+      height: 40px;
+      font-size: 16px;
+      text-align: left;
+      padding-left: 10px;
+      box-sizing: border-box;
+    }
+
+    #araButonu {
+      height: 40px;
+      margin-left: 10px;
+      padding: 0 16px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: lightgrey;
+      border: none;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+
+
+    }
+  </style>
+</head>
+<body>
+
+
+<button id="Buton1" onclick="window.location.href='SayıAsmaca.html'">SayıAsmaca</button>
+<button id="Buton6" onclick="window.location.href='Survival.html'">Survival</button>
+<script>
+
+  function aramaYap() {
+  let aramaDegeri = document.getElementById("textboxARAMA").value.trim();
+  console.log("Kullanici arama yapti:", aramaDegeri);
+
+  if (aramaDegeri === "place/ForgeUKA") {
+    window.location.href = "UKAforge.html";
+  }
+  else if (aramaDegeri === "place/Phyton") {
+    window.location.href = "Piton.html";
+  }
+  else if (aramaDegeri === "place/main-menu") {
+    window.location.href = "index.html";
+  }
+  else if (aramaDegeri === "place/games") {
+    window.location.href = "games.html";
+  }
+  else if (aramaDegeri === "place/games.sayiasmaca") {
+    window.location.href = "SayıAsmaca.html";
+    
+  }else if (aramaDegeri === "place/games.survival") {
+    window.location.href = "Survival.html";
+  }
+
+
+
+
+
+
+}
+
+</script>
+
+
+  <!-- ANASAYFA -->
+  <div id="sayfa1">
+        <h2>""""""""</h2>
+
+    <h1>Anasayfa</h1>
+    
+<div id="aramaKutu">
+  <input type="text" id="textboxARAMA" placeholder="place:main-menu">
+  <button id="araButonu" onclick="aramaYap()">🔍 Ara</button>
+</div>
+
+
+
+
+
+   
+  </div>
+
+  <!-- GİRİŞ SAYFASI -->
+  <div id="sayfa2">
+    <h1>Kaydol / Giriş</h1>
+    <h5>Burası bir deneme web sitesidir</h5>
+    <img id="UKAlogo" src="images/Forge.png">
+    <input type="text" id="metinKutusuAD" placeholder="Mail adresiniz">
+    <input type="password" id="metinKutusuŞİFRE" placeholder="Şifreniz">
+    <button id="gonderButonu" onclick="verileriAl()">Gönder</button>
+  </div>
+
+  
+
+  
+  <script>
+    function sayfaGoster(sayfaId) {
+      ['sayfa1', 'sayfa2', 'sayfa3', 'sayfa4', 'sayfa5'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+
+      document.getElementById(sayfaId).style.display = 'block';
+      document.getElementById('button4').style.display = (sayfaId === 'sayfa1') ? 'none' : 'block';
+
+      const javaMods = document.getElementById('JavaMods');
+      javaMods.style.display = (sayfaId === 'sayfa4') ? 'block' : 'none';
+
+      const showInputs = (sayfaId === 'sayfa2');
+      document.getElementById('metinKutusuAD').style.display = showInputs ? 'block' : 'none';
+      document.getElementById('metinKutusuŞİFRE').style.display = showInputs ? 'block' : 'none';
+      document.getElementById('gonderButonu').style.display = showInputs ? 'block' : 'none';
+    }
+
+    function verileriAl() {
+      const ad = document.getElementById("metinKutusuAD").value;
+      const sifre = document.getElementById("metinKutusuŞİFRE").value;
+      alert(`Ad: ${ad}\nŞifre: ${sifre}`);
+      document.getElementById("metinKutusuAD").value = "";
+      document.getElementById("metinKutusuŞİFRE").value = "";
+    }
+
+    function yorumGoster() {
+      const surum = document.getElementById("SürümKutusu").value.trim();
+      if (surum) {
+        const link = document.getElementById("indirmeLinki");
+        link.href = `https://orneklink.com/modindir/${encodeURIComponent(surum)}`;
+        link.style.display = 'inline';
+      } else {
+        alert("Lütfen bir sürüm girin.");
+      }
+    }
+  </script>
+<h3>place/games</h3>
+</body>
+</html>
+

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Python</title>
+  <style>
+    body {
+      margin: 20px;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+     #aramaKutu {
+      position: absolute;
+      top: 3%;
+      left: 1%;
+      display: flex;
+      align-items: center;
+      width: 98%;
+    }
+
+    #textboxARAMA {
+      flex: 1;
+      height: 40px;
+      font-size: 16px;
+      text-align: left;
+      padding-left: 10px;
+      box-sizing: border-box;
+    }
+
+    #araButonu {
+      height: 40px;
+      margin-left: 10px;
+      padding: 0 16px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: lightgrey;
+      border: none;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .buton {
+      height: 40px;
+      padding: 0 16px;
+      cursor: pointer;
+      font-size: 16px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+
+    .buton1 { background-color: rgb(171, 70, 70); }
+    .buton2 { background-color: rgb(181, 174, 75); }
+    .buton3 { background-color: rgb(83, 171, 70); }
+    .buton4 { background-color: rgb(75, 172, 181); }
+    .buton5 { background-color: rgb(70, 72, 171); }
+    .buton6 { background-color: rgb(181, 75, 160); }
+    
+  </style>
+</head>
+<body>
+
+  <a class="buton buton1" href="dosyalar/ornekOyun.zip" download="BenimOyunum.zip">Python İndir</a>
+  <a class="buton buton2" href="dosyalar/ornekOyun.zip" download="BenimOyunum.zip">TicTacToe İndir</a>
+  <a class="buton buton3" href="dosyalar/ornekOyun.zip" download="BenimOyunum.zip">TicTacToe İndir</a>
+  <a class="buton buton4" href="dosyalar/ornekOyun.zip" download="BenimOyunum.zip">TicTacToe İndir</a>
+  <a class="buton buton5" href="dosyalar/ornekOyun.zip" download="BenimOyunum.zip">TicTacToe İndir</a>
+  <a class="buton buton6" href="dosyalar/ornekOyun.zip" download="BenimOyunum.zip">TicTacToe İndir</a>
+      <input type="text" id="textboxARAMA" placeholder="place/Phyton">
+          <button id="araButonu" onclick="aramaYap()">🔍 Ara</button>
+
+</body>
+</html>
+
+
+<script>
+function aramaYap() {
+  let aramaDegeri = document.getElementById("textboxARAMA").value.trim();
+  console.log("Kullanici arama yapti:", aramaDegeri);
+
+  if (aramaDegeri === "place/ForgeUKA") {
+    window.location.href = "UKAforge.html";
+  }
+  else if (aramaDegeri === "place/Phyton") {
+    window.location.href = "Piton.html";
+  }
+
+  if (aramaDegeri === "place/main-menu") {
+    window.location.href = "index.html";
+  }
+}
+</script>
+
+</body>
+</html>
